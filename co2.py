@@ -1,14 +1,10 @@
 import pandas as pd 
-import numpy as np
-import matplotlib.pyplot as plt
 import datetime
-from matplotlib import pyplot
 import streamlit as st 
 import pickle 
 from pickle import load
 import datetime
 import plotly.express as px
-import matplotlib.pyplot as plt
 from pandas.tseries.offsets import DateOffset
 
 
@@ -40,7 +36,7 @@ def main():
     with col1:
         st.write("Original Data")
         st.write(df)
-        st.write(validation)
+#         st.write(validation)
     with col2:
         fig = px.line(df,x=df.index,y='CO2',title="Line plot of Origina Data")
         st.plotly_chart(fig)
