@@ -16,7 +16,7 @@ validation = pd.read_csv('CO2_resultls.csv')
 validation=validation.drop("Unnamed: 0",axis=1)
 
 arima = load(open('CO2_forecast_ARIMA.sav','rb'))
-sarima = load(open('CO2_forecast_SARIMA.sav','rb'))
+# sarima = load(open('CO2_forecast_SARIMA.sav','rb'))
 hw = load(open("CO2_forecast_Holt-Winter.sav",'rb'))
 # future = (range(2015,2025))
 # select_year = pd.to_datetime(future,format='%Y')
