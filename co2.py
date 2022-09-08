@@ -30,7 +30,7 @@ def main():
         layout= "wide"
     )
     st.title('Forecasting Web Application')
-    Menu = ["ARIMA",'SARIMA','Holt-Winter','Compare Models'] 
+    Menu = ["ARIMA",'Holt-Winter','Compare Models'] #'SARIMA',
 
     col1,col2 = st.columns(2)
     with col1:
@@ -102,58 +102,58 @@ def main():
                 arirma_results = arirma_results.drop('index',axis = True)
                 st.write(arirma_results)    
 
-        elif choice == 'SARIMA' :
-            # if 'SARIMA' not in st.session_state:
-            #     st.session_state.SARIMA = False
-            # if SARIMA or st.session_state.SARIMA_state:
-            #     st.session_state.SARIMA_state = True
-            st.subheader("Forecasting with SARIMA Model")
-            #data= st.number_input("Insert number of Years",min_value=1, max_value=15)
-            #future_year = st.selectbox('select year',select_year)
-            st.write('Click on Forecast button to get results')
-            lod = st.button('Forecast')
-            if "lod_state" not in st.session_state:
-                st.session_state.lod_state = False
+#         elif choice == 'SARIMA' :
+#             # if 'SARIMA' not in st.session_state:
+#             #     st.session_state.SARIMA = False
+#             # if SARIMA or st.session_state.SARIMA_state:
+#             #     st.session_state.SARIMA_state = True
+#             st.subheader("Forecasting with SARIMA Model")
+#             #data= st.number_input("Insert number of Years",min_value=1, max_value=15)
+#             #future_year = st.selectbox('select year',select_year)
+#             st.write('Click on Forecast button to get results')
+#             lod = st.button('Forecast')
+#             if "lod_state" not in st.session_state:
+#                 st.session_state.lod_state = False
                 
-                st.warning('Click on the Forecast button to get results')
+#                 st.warning('Click on the Forecast button to get results')
 
-            if lod or st.session_state.lod_state:
-                st.session_state.lod_state= True
+#             if lod or st.session_state.lod_state:
+#                 st.session_state.lod_state= True
                 
-                # start = st.select_year("Start",value =pd.to_datetime(df[-1]) )
-                st.warning("Starting Year is Default please choose ending Year")
-                end = st.date_input("Select End Year",min_value= pd.to_datetime('2022-01-01'),
-                                        max_value = None )
-                # end = len(df)+len(future)
-                predicted = sarima.predict(start=df.index[-1],end=end)
-                CO2_forecast=[]
-                for i in predicted:
-                    CO2_forecast.append(i)
-                SARIMA_forecast=pd.DataFrame(predicted)
-                SARIMA_forecast['Year'] = predicted.index
-                SARIMA_forecast= SARIMA_forecast.set_index('Year')
-                # ARIMA_forecast.index=pd.to_datetime(ARIMA_forecast.index,format='%Y')
-                # ARIMA_forecast.index.astype(dtype = 'datetime64[ns]')
-                SARIMA_forecast["CO2_forecast"]=CO2_forecast
-                SARIMA_forecast.drop('predicted_mean',axis=1,inplace=True)
-                frames = [df, SARIMA_forecast]
-                result = pd.concat(frames)
-                col4,col5=st.columns(2)
-                with col4:
-                    st.write('Results of SARIMA Model')
-                    st.write(SARIMA_forecast)
-                # fig = px.line(df,x='Year',y='CO2')
-                # Year = ARIMA_forecast.index
-                with col5:
-                    fig_sarima = px.line(result,title="Line chart of CO2 Forecasted by SARIMA")
-                    st.plotly_chart(fig_sarima)
-                    # fig_sarima = px.line(SARIMA_forecast,x= SARIMA_forecast.index,y='CO2_forecast',
-                    #             title=)
-                st.write("SARIMA model scores")
-                sarirma_results = validation[validation['Model']=='SARIMA']
-                sarirma_results = sarirma_results.reset_index(None)
-                sarirma_results = sarirma_results.drop('index',axis = True)
-                st.write(sarirma_results)
+#                 # start = st.select_year("Start",value =pd.to_datetime(df[-1]) )
+#                 st.warning("Starting Year is Default please choose ending Year")
+#                 end = st.date_input("Select End Year",min_value= pd.to_datetime('2022-01-01'),
+#                                         max_value = None )
+#                 # end = len(df)+len(future)
+#                 predicted = sarima.predict(start=df.index[-1],end=end)
+#                 CO2_forecast=[]
+#                 for i in predicted:
+#                     CO2_forecast.append(i)
+#                 SARIMA_forecast=pd.DataFrame(predicted)
+#                 SARIMA_forecast['Year'] = predicted.index
+#                 SARIMA_forecast= SARIMA_forecast.set_index('Year')
+#                 # ARIMA_forecast.index=pd.to_datetime(ARIMA_forecast.index,format='%Y')
+#                 # ARIMA_forecast.index.astype(dtype = 'datetime64[ns]')
+#                 SARIMA_forecast["CO2_forecast"]=CO2_forecast
+#                 SARIMA_forecast.drop('predicted_mean',axis=1,inplace=True)
+#                 frames = [df, SARIMA_forecast]
+#                 result = pd.concat(frames)
+#                 col4,col5=st.columns(2)
+#                 with col4:
+#                     st.write('Results of SARIMA Model')
+#                     st.write(SARIMA_forecast)
+#                 # fig = px.line(df,x='Year',y='CO2')
+#                 # Year = ARIMA_forecast.index
+#                 with col5:
+#                     fig_sarima = px.line(result,title="Line chart of CO2 Forecasted by SARIMA")
+#                     st.plotly_chart(fig_sarima)
+#                     # fig_sarima = px.line(SARIMA_forecast,x= SARIMA_forecast.index,y='CO2_forecast',
+#                     #             title=)
+#                 st.write("SARIMA model scores")
+#                 sarirma_results = validation[validation['Model']=='SARIMA']
+#                 sarirma_results = sarirma_results.reset_index(None)
+#                 sarirma_results = sarirma_results.drop('index',axis = True)
+#                 st.write(sarirma_results)
 
         elif choice == 'Holt-Winter':
             st.subheader("Forecasting with Holt-Winter model")
@@ -218,15 +218,15 @@ def main():
                     # st.write('Results of ARIMA Model')
                     # st.write(ARIMA_forecast)
                     # st.plotly_chart(fig_arima)
-                with col7:
-                    st.write("SARIMA model scores")
-                    sarirma_results = validation[validation['Model']=='SARIMA']
-                    sarirma_results = sarirma_results.reset_index(None)
-                    sarirma_results = sarirma_results.drop('index',axis = True)
-                    st.write(sarirma_results)
-                    # st.write('Results of SARIMA Model')
-                    # st.write(SARIMA_forecast)
-                    # st.plotly_chart(fig_sarima)
+#                 with col7:
+#                     st.write("SARIMA model scores")
+#                     sarirma_results = validation[validation['Model']=='SARIMA']
+#                     sarirma_results = sarirma_results.reset_index(None)
+#                     sarirma_results = sarirma_results.drop('index',axis = True)
+#                     st.write(sarirma_results)
+#                     # st.write('Results of SARIMA Model')
+#                     # st.write(SARIMA_forecast)
+#                     # st.plotly_chart(fig_sarima)
                 with col8 :
                     st.write("Holt-Winter model scores")
                     hw_results = validation[validation['Model']=='Holt-Winter']
