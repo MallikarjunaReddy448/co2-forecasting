@@ -29,12 +29,12 @@ def main():
         page_title= "Forecasting Web Application",
         layout= "wide"
     )
-    st.title('Forecasting Web Application')
+    st.title('CO2 Forecasting Web Application')
     Menu = ["ARIMA",'Holt-Winter','Compare Models'] #'SARIMA',
 
     col1,col2 = st.columns(2)
     with col1:
-        st.write("Original Data")
+        st.write("Original Historical Data")
         st.write(df)
 #         st.write(validation)
     with col2:
