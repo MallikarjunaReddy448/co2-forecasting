@@ -175,7 +175,7 @@ def main():
                 for i in predicted:
                     CO2_forecast.append(i)
                 # hw_forecast=pd.DataFrame(predicted)
-                hw_forecast=pd.DataFrame(predicted,columns={"CO2_forecast"})
+                hw_forecast=pd.DataFrame(predicted,columns=("CO2_forecast"))
                 hw_forecast['Year'] = predicted.index
                 hw_forecast= hw_forecast.set_index('Year')
                 # hw_forecast["CO2_forecast"]=CO2_forecast
